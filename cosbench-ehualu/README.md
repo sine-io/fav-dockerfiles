@@ -17,6 +17,12 @@ Environment variables available are:
 
 ## Start a controller and two drivers COSbench container on the same machine(via docker-compose):
 ```console
+
+// Install docker-compose
+curl -SL https://github.com/docker/compose/releases/download/v2.6.1/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+// Pull repo and run.
 git pull https://github.com/kisscelia/fav-dockerfiles.git
 cd cosbench-ehualu
 docker-compose up -d
