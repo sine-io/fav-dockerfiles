@@ -1,0 +1,69 @@
+version: '3.9'
+
+services:
+  driver1:
+    image: "sinecelia/cosbench-ehualu:0.4.7.8-ubuntu"
+    environment:
+      CONTROLLER: false
+      DRIVER: true
+      DRIVER_PORT: 18088
+      COSBENCH_PLUGINS: "ESS,GDAS,S3"
+    volumes:
+      - driver1:/cosbench
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:18088/driver"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    network_mode: "host"
+
+  driver2:
+    image: "sinecelia/cosbench-ehualu:0.4.7.8-ubuntu"
+    environment:
+      CONTROLLER: false
+      DRIVER: true
+      DRIVER_PORT: 18188
+      COSBENCH_PLUGINS: "ESS,GDAS,S3"
+    volumes:
+      - driver2:/cosbench
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:18188/driver"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    network_mode: "host"
+
+  controller:
+    image: "sinecelia/cosbench-ehualu:0.4.7.8-ubuntu"
+    environment:
+      CONTROLLER: true
+      DRIVER: false
+      DRIVERS: "http://127.0.0.1:18088/driver,http://127.0.0.1:18188/driver"
+    depends_on:
+      driver1:
+        condition: service_started
+      driver2:
+        condition: service_started
+    volumes:
+      - controller:/cosbench
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:19088/controller/index.html"]
+      interval: 60s
+      timeout: 20s
+      retries: 3
+    restart: unless-stopped
+    tty: true
+    stdin_open: true
+    network_mode: "host"
+
+
+volumes:
+  controller:
+  driver1:
+  driver2:

@@ -1,0 +1,24 @@
+FROM eclipse-temurin:8-jre-alpine
+MAINTAINER "sine.wang" <sinecelia.wang@gmail.com>
+
+ENV COS_VERSION=0.4.7.8
+ENV COS_PKGNAME="cosbench-"
+ENV COS_NAME="cosbench-"
+ENV COS_SUFFIX="-ehualu"
+ENV COS_FILENAMEEXT=".tar.gz"
+
+
+COPY ${COS_PKGNAME}${COS_VERSION}${COS_SUFFIX}${COS_FILENAMEEXT} /
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+    && apk update \
+    && apk add --no-cache curl nmap-ncat \
+    && tar xf /${COS_PKGNAME}${COS_VERSION}${COS_SUFFIX}${COS_FILENAMEEXT} -C / \
+    && mv /${COS_NAME}${COS_VERSION}${COS_SUFFIX} /cosbench \
+    && rm -f /${COS_PKGNAME}${COS_VERSION}${COS_SUFFIX}${COS_FILENAMEEXT} \
+    && rm -rf /${COS_NAME}${COS_VERSION}${COS_SUFFIX} \
+    && rm -f /bin/sh && ln -s /bin/bash /bin/sh
+
+ADD start-cosbench.sh /cosbench/
+
+CMD ["sh /cosbench/start-cosbench.sh"]

@@ -4,6 +4,7 @@
 : ${CONTROLLER:=true}
 : ${DRIVER:=true}
 : ${COSBENCH_PLUGINS:=ESS}
+: ${DRIVER_PORT:=18088}
 
 
 cd /cosbench
@@ -25,9 +26,8 @@ if [ "$DRIVER" = true ]; then
       'S3')      COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-s3_${VERSION}' ;;
       'CEPH')    COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-librados_${VERSION}' ;;
       'AMPLI')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-ampli_${VERSION}' ;;
-      'ESS')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-ehualu_${VERSION}' ;;
-      'ESSV2')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-ehualu_${VERSION}' ;;
-      'GDAS')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-ehualu_${VERSION}' ;;
+      'ESS' | 'ESSV2')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-ess_${VERSION}' ;;
+      'GDAS')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-gdas_${VERSION}' ;;
     esac
   done
 
@@ -78,7 +78,7 @@ elif [ "$CONTROLLER" = true ]; then
   sh start-controller.sh
 elif [ "$DRIVER" = true ]; then
   echo "Starting driver"
-  sh start-driver.sh
+  sh start-driver.sh 1 127.0.0.1 $DRIVER_PORT
 else
   echo 'Houston, we have had a problem here.'
 fi
