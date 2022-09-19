@@ -26,8 +26,8 @@ if [ "$DRIVER" = true ]; then
       'S3')      COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-s3_${VERSION}' ;;
       'CEPH')    COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-librados_${VERSION}' ;;
       'AMPLI')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-ampli_${VERSION}' ;;
-      'SIO' | 'SIOV2')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-sineio_${VERSION}' ;;
-      'GDAS')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-gdas_${VERSION}' ;;
+      'SIO' | 'SIOV2' | 'GDAS')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-sineio_${VERSION}' ;;
+      # 'GDAS')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-gdas_${VERSION}' ;;
     esac
   done
 
