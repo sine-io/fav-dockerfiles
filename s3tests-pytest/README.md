@@ -2,7 +2,7 @@
 
 ## Build the ceph s3 test suite image
 
-    git clone https://github.com/kisscelia/fav-dockerfiles.git
+    git clone https://github.com/sine-io/fav-dockerfiles.git
     cd fav-dockerfiles
     docker build -t s3tests-pytest s3tests-pytest
 

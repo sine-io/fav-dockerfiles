@@ -1,15 +1,14 @@
 FROM eclipse-temurin:8-jre-alpine
 MAINTAINER "sine.wang" <sinecelia.wang@gmail.com>
 
-ENV COS_VERSION=0.4.7.8
+ENV COS_VERSION=${VERSION}
 ENV COS_PREFIX="cosbench-"
-ENV COS_SUFFIX="-ehualu"
+ENV COS_SUFFIX="-sineio"
 ENV COS_FILENAMEEXT=".tar.gz"
 
 WORKDIR /
 
 ADD ${COS_PREFIX}${COS_VERSION}${COS_SUFFIX}${COS_FILENAMEEXT} .
-
 
 RUN echo 'Asia/Shanghai' > /etc/timezone \ 
     && mv /${COS_PREFIX}${COS_VERSION}${COS_SUFFIX} /cosbench \

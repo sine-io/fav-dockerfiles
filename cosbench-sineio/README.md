@@ -1,6 +1,6 @@
-# cosbench-ehualu
+# cosbench-sineio
 
-This image provides an easy way to run [COSbench](https://github.com/kisscelia/cosbench-ehualu.git) with the [ess, essv2, gdas] backend support.
+This image provides an easy way to run [COSbench](https://github.com/sine-io/cosbench-sineio.git) with the [sio, siov2, gdas] backend support.
 
 ## How to use this image
 
@@ -13,7 +13,7 @@ Environment variables available are:
 - `DRIVERS`: Comma separated list of COSbench drivers to be used by the controller
  (Default to `http://127.0.0.1:18088/driver`)
 - `DRIVER_PORT`: driver base port(Default to 18088)
-- `COSBENCH_PLUGINS`: Comma separated list of COSbench OSGI plugins to load. The more you add, the slower it is to start (Default to `ESS`. Available values: `ESS,ESSV2,GDAS,OPENIO,CDMI,SWIFT,SCALITY,S3,CEPH,AMPLI`)
+- `COSBENCH_PLUGINS`: Comma separated list of COSbench OSGI plugins to load. The more you add, the slower it is to start (Default to `SIO`. Available values: `SIO,SIOV2,GDAS,OPENIO,CDMI,SWIFT,SCALITY,S3,CEPH,AMPLI`)
 
 ## Start a controller and two drivers COSbench container on the same machine(via docker-compose):
 ```console
@@ -24,7 +24,7 @@ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 // Pull repo and run.
 git pull https://github.com/kisscelia/fav-dockerfiles.git
-cd cosbench-ehualu
+cd cosbench-sineio
 docker-compose up -d
 ```
 
@@ -35,8 +35,8 @@ docker-compose up -d
 -e DRIVER=true \
 -e DRIVER_PORT=18088 \
 -e DRIVERS="http://192.168.0.1:18088/driver" \
--e COSBENCH_PLUGINS="ESS,OPENIO,SWIFT,S3" \
-sinecelia/cosbench-ehualu:0.4.7.8-ubuntu
+-e COSBENCH_PLUGINS="SIO,OPENIO,SWIFT,S3" \
+sinecelia/cosbench-sineio:0.4.7.8-ubuntu
 ```
 Then you can access the COSbench Web Interface through `http://192.168.0.1:19088/controller/index.html`
 
@@ -49,8 +49,8 @@ Then you can access the COSbench Web Interface through `http://192.168.0.1:19088
 -e CONTROLLER=false \
 -e DRIVER=true \
 -e DRIVER_PORT=18188 \
--e COSBENCH_PLUGINS="ESS,OPENIO,SWIFT,S3" \
-sinecelia/cosbench-ehualu:0.4.7.8-ubuntu
+-e COSBENCH_PLUGINS="SIO,OPENIO,SWIFT,S3" \
+sinecelia/cosbench-sineio:0.4.7.8-ubuntu
 ```
 
 ### 2. Add more drivers on the same machine(Just change the DRIVER_PORT) if you need
@@ -60,8 +60,8 @@ sinecelia/cosbench-ehualu:0.4.7.8-ubuntu
 -e CONTROLLER=false \
 -e DRIVER=true \
 -e DRIVER_PORT=18188 \
--e COSBENCH_PLUGINS="ESS,OPENIO,SWIFT,S3" \
-sinecelia/cosbench-ehualu:0.4.7.8-ubuntu
+-e COSBENCH_PLUGINS="SIO,OPENIO,SWIFT,S3" \
+sinecelia/cosbench-sineio:0.4.7.8-ubuntu
 ```
 
 ### 3. Start a controller COSbench container if you need:  
@@ -70,18 +70,18 @@ sinecelia/cosbench-ehualu:0.4.7.8-ubuntu
 -e CONTROLLER=true \
 -e DRIVER=false \
 -e DRIVERS="http://192.168.0.1:18088/driver,http://192.168.0.1:18188/driver" \
-sinecelia/cosbench-ehualu:0.4.7.8-ubuntu
+sinecelia/cosbench-sineio:0.4.7.8-ubuntu
 ```
 Then you can access the COSbench Web Interface through `http://192.168.0.1:19088/controller/index.html`
 
 ## Define COSbench Workloads
 
-- Using the ESS API:
-You need to start your controller with the `ESS` support.
+- Using the SIO API:
+You need to start your controller with the `SIO` support.
   * Authentication
   * Type: `None`
   * Storage
-  * Type: `ess`
+  * Type: `sio`
   * Configuration: `accesskey=<accesskey>;secretkey=<scretkey>;proxyhost=<proxyhost>;proxyport=<proxyport>;endpoint=<endpoint>;no_verify_ssl=true;path_style_access=true`
 
 - Using the GDAS API:

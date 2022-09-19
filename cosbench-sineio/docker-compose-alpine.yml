@@ -2,12 +2,12 @@ version: '3.9'
 
 services:
   driver1:
-    image: "sinecelia/cosbench-ehualu:0.4.7.8-alpine"
+    image: "sinecelia/cosbench-sineio:0.4.7.8-alpine"
     environment:
       CONTROLLER: false
       DRIVER: true
       DRIVER_PORT: 18088
-      COSBENCH_PLUGINS: "ESS,GDAS,S3"
+      COSBENCH_PLUGINS: "SIO,GDAS,S3"
     volumes:
       - /data/cosbench/driver1-log/:/cosbench/log
       - /etc/resolv.conf:/etc/resolv.conf:ro
@@ -24,12 +24,12 @@ services:
     network_mode: "host"
 
   driver2:
-    image: "sinecelia/cosbench-ehualu:0.4.7.8-alpine"
+    image: "sinecelia/cosbench-sineio:0.4.7.8-alpine"
     environment:
       CONTROLLER: false
       DRIVER: true
       DRIVER_PORT: 18188
-      COSBENCH_PLUGINS: "ESS,GDAS,S3"
+      COSBENCH_PLUGINS: "SIO,GDAS,S3"
     volumes:
       - /data/cosbench/driver2-log/:/cosbench/log
       - /etc/resolv.conf:/etc/resolv.conf:ro
@@ -46,12 +46,12 @@ services:
     network_mode: "host"
 
   driver3:
-    image: "sinecelia/cosbench-ehualu:0.4.7.8-alpine"
+    image: "sinecelia/cosbench-sineio:0.4.7.8-alpine"
     environment:
       CONTROLLER: false
       DRIVER: true
       DRIVER_PORT: 18288
-      COSBENCH_PLUGINS: "ESS,GDAS,S3"
+      COSBENCH_PLUGINS: "SIO,GDAS,S3"
     volumes:
       - /data/cosbench/driver3-log/:/cosbench/log
       - /etc/resolv.conf:/etc/resolv.conf:ro
@@ -68,7 +68,7 @@ services:
     network_mode: "host"
 
   controller:
-    image: "sinecelia/cosbench-ehualu:0.4.7.8-alpine"
+    image: "sinecelia/cosbench-sineio:0.4.7.8-alpine"
     environment:
       CONTROLLER: true
       DRIVER: false

@@ -3,7 +3,7 @@
 : ${DRIVERS:=http://127.0.0.1:18088/driver}
 : ${CONTROLLER:=true}
 : ${DRIVER:=true}
-: ${COSBENCH_PLUGINS:=ESS}
+: ${COSBENCH_PLUGINS:=SIO}
 : ${DRIVER_PORT:=18088}
 
 
@@ -26,7 +26,7 @@ if [ "$DRIVER" = true ]; then
       'S3')      COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-s3_${VERSION}' ;;
       'CEPH')    COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-librados_${VERSION}' ;;
       'AMPLI')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-ampli_${VERSION}' ;;
-      'ESS' | 'ESSV2')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-ess_${VERSION}' ;;
+      'SIO' | 'SIOV2')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-sineio_${VERSION}' ;;
       'GDAS')   COSBENCH_OSGI="$COSBENCH_OSGI"' cosbench-gdas_${VERSION}' ;;
     esac
   done
