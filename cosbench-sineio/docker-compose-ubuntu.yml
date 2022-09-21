@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   driver1:
-    image: "sinecelia/cosbench-sineio:0.4.7.8-ubuntu"
+    image: "sineio/cosbench-sineio:0.4.7.8-ubuntu"
     environment:
       CONTROLLER: false
       DRIVER: true
@@ -11,6 +11,8 @@ services:
     volumes:
       - /data/cosbench-driver1/archive/:/cosbench/archive
       - /data/cosbench-driver1/log/:/cosbench/log
+      - /etc/hosts:/etc/hosts:ro
+      - /etc/localtime:/etc/localtime:ro
       #- driver1-archive:/cosbench/archive
       #- driver1-log/:/cosbench/log
     healthcheck:
@@ -24,7 +26,7 @@ services:
     network_mode: "host"
 
   driver2:
-    image: "sinecelia/cosbench-sineio:0.4.7.8-ubuntu"
+    image: "sineio/cosbench-sineio:0.4.7.8-ubuntu"
     environment:
       CONTROLLER: false
       DRIVER: true
@@ -33,6 +35,8 @@ services:
     volumes:
       - /data/cosbench-driver2/archive/:/cosbench/archive
       - /data/cosbench-driver2/log/:/cosbench/log
+      - /etc/hosts:/etc/hosts:ro
+      - /etc/localtime:/etc/localtime:ro
       #- driver2-archive:/cosbench/archive
       #- driver2-log/:/cosbench/log
     healthcheck:
@@ -46,7 +50,7 @@ services:
     network_mode: "host"
 
   driver3:
-    image: "sinecelia/cosbench-sineio:0.4.7.8-ubuntu"
+    image: "sineio/cosbench-sineio:0.4.7.8-ubuntu"
     environment:
       CONTROLLER: false
       DRIVER: true
@@ -55,6 +59,8 @@ services:
     volumes:
       - /data/cosbench-driver3/archive/:/cosbench/archive
       - /data/cosbench-driver3/log/:/cosbench/log
+      - /etc/hosts:/etc/hosts:ro
+      - /etc/localtime:/etc/localtime:ro
       #- driver2-archive:/cosbench/archive
       #- driver2-log/:/cosbench/log
     healthcheck:
@@ -68,7 +74,7 @@ services:
     network_mode: "host"
 
   controller:
-    image: "sinecelia/cosbench-sineio:0.4.7.8-ubuntu"
+    image: "sineio/cosbench-sineio:0.4.7.8-ubuntu"
     environment:
       CONTROLLER: true
       DRIVER: false
@@ -83,6 +89,8 @@ services:
     volumes:
       - /data/cosbench-controller/archive/:/cosbench/archive
       - /data/cosbench-controller/log/:/cosbench/log
+      - /etc/hosts:/etc/hosts:ro
+      - /etc/localtime:/etc/localtime:ro
       #- controller-archive:/cosbench/archive
       #- controller-log/:/cosbench/log
     healthcheck:

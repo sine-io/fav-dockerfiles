@@ -23,9 +23,9 @@ curl -SL https://github.com/docker/compose/releases/download/v2.6.1/docker-compo
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 // Pull repo and run.
-git pull https://github.com/kisscelia/fav-dockerfiles.git
-cd cosbench-sineio
-docker-compose up -d
+git clone https://github.com/sine-io/fav-dockerfiles.git
+cd fav-dockerfiles && cd cosbench-sineio
+docker-compose -f docker-compose-ubuntu.yml up -d
 ```
 
 ## Start a controller and a driver COSbench container at the same time:  
@@ -36,7 +36,7 @@ docker-compose up -d
 -e DRIVER_PORT=18088 \
 -e DRIVERS="http://192.168.0.1:18088/driver" \
 -e COSBENCH_PLUGINS="SIO,OPENIO,SWIFT,S3" \
-sinecelia/cosbench-sineio:0.4.7.8-ubuntu
+sineio/cosbench-sineio:0.4.7.8-ubuntu
 ```
 Then you can access the COSbench Web Interface through `http://192.168.0.1:19088/controller/index.html`
 
@@ -50,7 +50,7 @@ Then you can access the COSbench Web Interface through `http://192.168.0.1:19088
 -e DRIVER=true \
 -e DRIVER_PORT=18188 \
 -e COSBENCH_PLUGINS="SIO,OPENIO,SWIFT,S3" \
-sinecelia/cosbench-sineio:0.4.7.8-ubuntu
+sineio/cosbench-sineio:0.4.7.8-ubuntu
 ```
 
 ### 2. Add more drivers on the same machine(Just change the DRIVER_PORT) if you need
@@ -61,7 +61,7 @@ sinecelia/cosbench-sineio:0.4.7.8-ubuntu
 -e DRIVER=true \
 -e DRIVER_PORT=18188 \
 -e COSBENCH_PLUGINS="SIO,OPENIO,SWIFT,S3" \
-sinecelia/cosbench-sineio:0.4.7.8-ubuntu
+sineio/cosbench-sineio:0.4.7.8-ubuntu
 ```
 
 ### 3. Start a controller COSbench container if you need:  
@@ -70,7 +70,7 @@ sinecelia/cosbench-sineio:0.4.7.8-ubuntu
 -e CONTROLLER=true \
 -e DRIVER=false \
 -e DRIVERS="http://192.168.0.1:18088/driver,http://192.168.0.1:18188/driver" \
-sinecelia/cosbench-sineio:0.4.7.8-ubuntu
+sineio/cosbench-sineio:0.4.7.8-ubuntu
 ```
 Then you can access the COSbench Web Interface through `http://192.168.0.1:19088/controller/index.html`
 

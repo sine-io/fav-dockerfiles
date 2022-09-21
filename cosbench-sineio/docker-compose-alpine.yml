@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   driver1:
-    image: "sinecelia/cosbench-sineio:0.4.7.8-alpine"
+    image: "sineio/cosbench-sineio:0.4.7.8-alpine"
     environment:
       CONTROLLER: false
       DRIVER: true
@@ -24,7 +24,7 @@ services:
     network_mode: "host"
 
   driver2:
-    image: "sinecelia/cosbench-sineio:0.4.7.8-alpine"
+    image: "sineio/cosbench-sineio:0.4.7.8-alpine"
     environment:
       CONTROLLER: false
       DRIVER: true
@@ -46,7 +46,7 @@ services:
     network_mode: "host"
 
   driver3:
-    image: "sinecelia/cosbench-sineio:0.4.7.8-alpine"
+    image: "sineio/cosbench-sineio:0.4.7.8-alpine"
     environment:
       CONTROLLER: false
       DRIVER: true
@@ -68,7 +68,7 @@ services:
     network_mode: "host"
 
   controller:
-    image: "sinecelia/cosbench-sineio:0.4.7.8-alpine"
+    image: "sineio/cosbench-sineio:0.4.7.8-alpine"
     environment:
       CONTROLLER: true
       DRIVER: false
